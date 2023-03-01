@@ -1,0 +1,51 @@
+@import "../variables";
+
+.header {
+  box-shadow: 0 10px 15px -3px rgba(255, 252, 252, 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  height: $headerHeight;
+  width: 100%;
+  padding: 0 1.5rem;
+  @include breakpoint(md) {
+    padding: 0 3rem;
+  }
+  transition: 0.3s ease all;
+
+  &__content {
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 1920px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__logo {
+      width: 100px;
+    }
+
+    &__nav {
+      ul {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+
+        li {
+          a {
+            text-decoration: none;
+            color: inherit;
+            padding: 0.75rem 1.25rem;
+            border-radius: 16px;
+            transition: 0.3s ease all;
+
+            &:hover {
+              background: rgba($light, 0.1);
+              color: $primary;
+            }
+          }
+        }
+      }
+    }
+  }
+}

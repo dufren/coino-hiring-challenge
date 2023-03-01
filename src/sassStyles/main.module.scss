@@ -1,0 +1,18 @@
+@import "./variables";
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
+}
+
+body {
+  font-family: $Prompt;
+  width: 100%;
+  color: $light;
+  background-color: $dark;
+}

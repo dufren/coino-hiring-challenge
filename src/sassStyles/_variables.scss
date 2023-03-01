@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap");
+
+// font family
+$Prompt: "Prompt", sans-serif;
+
+// colors
+$dark: #161518;
+$light: #c4cbcb;
+$primary: #1ecad3;
+
+// spacing
+$spacing-md: 16px;
+$spacing-lg: 32px;
+
+// border radius
+$borderRadius: 12px;
+
+// header height
+$headerHeight: 100px;
+
+@mixin breakpoint($point) {
+  @if $point == md {
+    // 768px
+    @media (min-width: 48em) {
+      @content;
+    }
+  }
+}
