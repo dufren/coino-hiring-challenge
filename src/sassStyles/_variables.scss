@@ -5,6 +5,7 @@ $Prompt: "Prompt", sans-serif;
 
 // colors
 $dark: #161518;
+$light-dark: #1c1d1e;
 $light: #c4cbcb;
 $primary: #1ecad3;
 
@@ -18,11 +19,40 @@ $borderRadius: 12px;
 // header height
 $headerHeight: 100px;
 
-@mixin breakpoint($point) {
-  @if $point == md {
-    // 768px
-    @media (min-width: 48em) {
-      @content;
-    }
+// breakpoints
+$xsBreakpoint: 576px;
+$smBreakpoint: 768px;
+$mdBreakpoint: 1024px;
+$lgBreakpoint: 1290px;
+$xlBreakpoint: 1440px;
+
+// breakpoint mixins
+@mixin xs-breakpoint {
+  @media only screen and (max-width: $xsBreakpoint) {
+    @content;
+  }
+}
+
+@mixin sm-breakpoint {
+  @media only screen and (min-width: $smBreakpoint) {
+    @content;
+  }
+}
+
+@mixin md-breakpoint {
+  @media only screen and (min-width: $mdBreakpoint) {
+    @content;
+  }
+}
+
+@mixin lg-breakpoint {
+  @media only screen and (min-width: $lgBreakpoint) {
+    @content;
+  }
+}
+
+@mixin xl-breakpoint {
+  @media only screen and (min-width: $xlBreakpoint) {
+    @content;
   }
 }

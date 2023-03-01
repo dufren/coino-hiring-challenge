@@ -2,8 +2,11 @@ import classes from "../sassStyles/componentStyles/Header.module.scss";
 
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
+import { useState } from "react";
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <header className={classes.header}>
       <div className={classes.header__content}>
@@ -14,7 +17,7 @@ const Header = () => {
         />
 
         <nav className={classes.header__content__nav}>
-          <ul>
+          <ul className={`${!isMenuOpen ? classes.close : ""}`}>
             <li>
               <a href="">Products</a>
             </li>
@@ -27,6 +30,14 @@ const Header = () => {
             </li>
           </ul>
         </nav>
+
+        <div className={classes.header__content__toggler}>
+          {!isMenuOpen ? (
+            <BiMenuAltRight onClick={() => setIsMenuOpen(!isMenuOpen)} />
+          ) : (
+            <AiOutlineClose onClick={() => setIsMenuOpen(!isMenuOpen)} />
+          )}
+        </div>
       </div>
     </header>
   );
