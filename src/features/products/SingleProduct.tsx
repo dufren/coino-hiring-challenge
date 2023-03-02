@@ -13,6 +13,10 @@ const SingleProduct = ({ product }: ProductType2) => {
       <div className={classes.card__content}>
         <h2 className={classes.card__content__title}>{product.title}</h2>
         <p className={classes.card__content__brand}>{product.brand}</p>
+        <span className={classes.card__content__rating}>
+          <AiFillStar className={classes.card__content__rating__star} />
+          {product.rating}
+        </span>
         <div className={classes.card__content__price}>${product.price}</div>
         <button className={classes.card__content__button}>Add to cart</button>
       </div>

@@ -20,6 +20,17 @@
   }
 
   &__content {
+    &__rating {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+
+      &__star {
+        color: yellow;
+      }
+    }
+
     &__title {
       font-size: 20px;
       font-weight: bold;
