@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useGetProductsQuery } from "../../app/api/apiSlice";
 import { PulseLoader } from "react-spinners";
 
-import Product from "./Product";
 import classes from "../../sassStyles/componentStyles/ProductsList.module.scss";
 
 import type { ProductType } from "../../Types";
+import SingleProduct from "./SingleProduct";
 
 const ProductsList = () => {
   const { data, isLoading, isError, isSuccess } =
@@ -28,7 +28,9 @@ const ProductsList = () => {
   if (isSuccess) {
     content =
       products?.length &&
-      products.map((product) => <Product product={product} key={product.id} />);
+      products.map((product) => (
+        <SingleProduct product={product} key={product.id} />
+      ));
   }
 
   return (
