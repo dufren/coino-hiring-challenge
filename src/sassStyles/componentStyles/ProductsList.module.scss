@@ -2,9 +2,16 @@
 
 .main {
   &__content {
-    margin: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    text-align: center;
+    display: grid;
+    padding: 30px;
+
+    @include md-breakpoint() {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include lg-breakpoint() {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 }

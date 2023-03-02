@@ -7,19 +7,14 @@ const SingleProduct = ({ product }: ProductType2) => {
     <div className={classes.card}>
       <img
         src={product.images[0]}
-        alt="thumbnail"
-        className={classes.card__logo}
+        alt={product.title}
+        className={classes.card__image}
       />
       <div className={classes.card__content}>
-        <h1>{product.title}</h1>
-        <h4>
-          <AiFillStar className={classes.card__content__star} />
-          <span>{product.rating}</span>
-        </h4>
-        <div className={classes.card__content__bottom}>
-          <h2>${product.price}</h2>
-          <button>Add to cart</button>
-        </div>
+        <h2 className={classes.card__content__title}>{product.title}</h2>
+        <p className={classes.card__content__brand}>{product.brand}</p>
+        <div className={classes.card__content__price}>${product.price}</div>
+        <button className={classes.card__content__button}>Add to cart</button>
       </div>
     </div>
   );
