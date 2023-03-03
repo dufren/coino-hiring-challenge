@@ -6,13 +6,16 @@
   box-sizing: border-box;
 }
 
-#root {
-  height: 100%;
-}
-
-body {
+:root {
   font-family: $Prompt;
   width: 100%;
   color: $light;
   background-color: $dark;
+}
+
+[data-theme="light"] {
+  font-family: $Prompt;
+  width: 100%;
+  color: $dark;
+  background-color: $light;
 }

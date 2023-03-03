@@ -5,20 +5,17 @@ $Prompt: "Prompt", sans-serif;
 
 // colors
 $dark: #161518;
-$light-dark: #1c1d1e;
+$light-dark: #222526;
 $card-bg: #313232;
 $light: #c4cbcb;
 $primary: #1ecad3;
 
-// spacing
-$spacing-md: 16px;
-$spacing-lg: 32px;
-
-// border radius
-$borderRadius: 12px;
-
-// header height
-$headerHeight: 100px;
+// mixin
+@mixin displayFlex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 // breakpoints
 $xsBreakpoint: 576px;
@@ -36,6 +33,12 @@ $xlBreakpoint: 1440px;
 
 @mixin sm-breakpoint {
   @media only screen and (min-width: $smBreakpoint) {
+    @content;
+  }
+}
+
+@mixin sm2-breakpoint {
+  @media only screen and (max-width: $mdBreakpoint) {
     @content;
   }
 }

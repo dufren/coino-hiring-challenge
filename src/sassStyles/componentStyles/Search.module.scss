@@ -1,0 +1,43 @@
+@import "../variables";
+
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: inherit;
+  border-radius: 5px;
+  margin: 50px 50px 0 50px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  @include xs-breakpoint() {
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    &__input {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+  input {
+    font-family: inherit;
+    width: 70%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+
+  select {
+    font-family: inherit;
+    cursor: pointer;
+    width: 25%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+  }
+}

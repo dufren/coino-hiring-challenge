@@ -1,8 +1,63 @@
 import classes from "../../sassStyles/componentStyles/Product.module.scss";
-import { AiFillStar } from "react-icons/ai";
-import type { ProductType2 } from "../../Types";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 
-const SingleProduct = ({ product }: ProductType2) => {
+import { AiFillStar } from "react-icons/ai";
+import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+
+import type { PropDataType } from "../../Types";
+
+import { useState } from "react";
+import { useAppDispatch } from "../../app/hooks";
+import { addToFav } from "../favorites/favoritesSlice";
+import { addToCart } from "../cart/cartSlice";
+
+const SingleProduct = ({ product }: PropDataType) => {
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isAddedToFav, setIsAddedToFav] = useState(
+    JSON.parse(localStorage.getItem(String(product.id))) || false
+  );
+
+  const dispatch = useAppDispatch();
+
+  const addToFavHandle = () => {
+    !isAddedToFav
+      ? localStorage.setItem(String(product.id), JSON.stringify(!isAddedToFav))
+      : localStorage.removeItem(String(product.id));
+    dispatch(addToFav(product));
+
+    setIsAddedToFav(!isAddedToFav);
+
+    if (!isAddedToFav) {
+      toast.success(`${product.title} added to favorites`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.warn(`${product.title} removed from favorites`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
+
+  const addToCartHandle = () => {
+    setIsAddedToCart(true);
+    dispatch(addToCart(product));
+  };
+
   return (
     <div className={classes.card}>
       <img
@@ -12,13 +67,29 @@ const SingleProduct = ({ product }: ProductType2) => {
       />
       <div className={classes.card__content}>
         <h2 className={classes.card__content__title}>{product.title}</h2>
+
         <p className={classes.card__content__brand}>{product.brand}</p>
+
         <span className={classes.card__content__rating}>
           <AiFillStar className={classes.card__content__rating__star} />
           {product.rating}
         </span>
+
         <div className={classes.card__content__price}>${product.price}</div>
-        <button className={classes.card__content__button}>Add to cart</button>
+
+        <button
+          onClick={addToCartHandle}
+          className={classes.card__content__button}
+        >
+          {isAddedToCart ? "Added to cart" : "Add to cart"}
+        </button>
+        <button
+          onClick={addToFavHandle}
+          className={classes.card__content__button}
+        >
+          {isAddedToFav ? <MdOutlineFavorite /> : <MdOutlineFavoriteBorder />}
+        </button>
+        <ToastContainer />
       </div>
     </div>
   );

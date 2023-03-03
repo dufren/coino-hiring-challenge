@@ -7,7 +7,7 @@
   justify-content: space-around;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  background-color: $light-dark;
+  //background-color: $light-dark;
   transition: transform 0.3s ease;
   margin: 24px;
 
@@ -21,9 +21,7 @@
 
   &__content {
     &__rating {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include displayFlex;
       gap: 5px;
 
       &__star {
@@ -51,14 +49,16 @@
 
     &__button {
       font-family: inherit;
+      font-weight: 500;
       padding: 10px;
       border: none;
       border-radius: 6px;
       background-color: $primary;
-      color: $light-dark;
+      color: $dark;
       transition: transform 0.3s ease;
       cursor: pointer;
       margin-bottom: 16px;
+      margin-left: 16px;
 
       &:hover {
         transform: scale(1.1);

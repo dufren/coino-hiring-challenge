@@ -1,10 +1,16 @@
 import classes from "../sassStyles/componentStyles/Header.module.scss";
 
-import { BiMenuAltRight } from "react-icons/bi";
+import { BiMenuAltRight, BiSun, BiMoon } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Header = () => {
+type Props = {
+  theme: string;
+  setTheme: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Header: React.FC<Props> = ({ theme, setTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -19,14 +25,27 @@ const Header = () => {
         <nav className={classes.header__content__nav}>
           <ul className={`${!isMenuOpen ? classes.close : ""}`}>
             <li>
-              <a href="">Products</a>
+              <Link to={"/"}>Products</Link>
             </li>
 
             <li>
-              <a href="">Favorites</a>
+              <Link to={"/favorites"}>Favorites</Link>
             </li>
             <li>
-              <a href="">Cart</a>
+              <Link to={"/cart"}>Cart</Link>
+            </li>
+            <li>
+              {theme === "dark" ? (
+                <BiSun
+                  onClick={() => setTheme("light")}
+                  className={classes.header__content__nav__toggler}
+                />
+              ) : (
+                <BiMoon
+                  onClick={() => setTheme("dark")}
+                  className={classes.header__content__nav__toggler}
+                />
+              )}
             </li>
           </ul>
         </nav>
