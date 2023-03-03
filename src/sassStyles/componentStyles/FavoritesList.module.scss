@@ -1,24 +1,29 @@
 @import "../variables";
 
 .main {
-  display: grid;
   text-align: center;
-  padding: 30px;
-  height: 100vh;
+  margin-top: 16px;
 
-  @include md-breakpoint() {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  &__content {
+    display: grid;
+    text-align: center;
+    padding: 30px;
+    height: 100vh;
 
-    &.empty {
-      display: block;
+    @include md-breakpoint() {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      &.empty {
+        display: block;
+      }
     }
-  }
 
-  @include lg-breakpoint() {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    @include lg-breakpoint() {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    &.empty {
-      display: block;
+      &.empty {
+        display: block;
+      }
     }
   }
 }

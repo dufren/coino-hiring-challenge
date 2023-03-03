@@ -24,10 +24,6 @@ export class ProductType {
   stock: number;
   thumbnail: string;
   title: string;
-
-  // constructor(brand:string){
-  //   this.brand=brand;
-  // }
 }
 
 export class CartItem {

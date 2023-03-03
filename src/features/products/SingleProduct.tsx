@@ -7,16 +7,22 @@ import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 
 import type { PropDataType } from "../../Types";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { addToFav } from "../favorites/favoritesSlice";
 import { addToCart } from "../cart/cartSlice";
 
 const SingleProduct = ({ product }: PropDataType) => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [isAddedToFav, setIsAddedToFav] = useState(
-    JSON.parse(localStorage.getItem(String(product.id))) || false
-  );
+  const [isAddedToFav, setIsAddedToFav] = useState(false);
+
+  useEffect(() => {
+    setIsAddedToFav(
+      localStorage.getItem(String(product.id)) !== null
+        ? JSON.parse(localStorage.getItem(String(product.id)) ?? "")
+        : false
+    );
+  }, [isAddedToFav]);
 
   const dispatch = useAppDispatch();
 
@@ -60,11 +66,17 @@ const SingleProduct = ({ product }: PropDataType) => {
 
   return (
     <div className={classes.card}>
-      <img
-        src={product.images[0]}
-        alt={product.title}
-        className={classes.card__image}
-      />
+      <div className={classes.card__upper}>
+        <img
+          src={product.images[0]}
+          alt={product.title}
+          className={classes.card__upper__image}
+        />
+        <button onClick={addToFavHandle} className={classes.card__upper__fav}>
+          {isAddedToFav ? <MdOutlineFavorite /> : <MdOutlineFavoriteBorder />}
+        </button>
+      </div>
+
       <div className={classes.card__content}>
         <h2 className={classes.card__content__title}>{product.title}</h2>
 
@@ -82,12 +94,6 @@ const SingleProduct = ({ product }: PropDataType) => {
           className={classes.card__content__button}
         >
           {isAddedToCart ? "Added to cart" : "Add to cart"}
-        </button>
-        <button
-          onClick={addToFavHandle}
-          className={classes.card__content__button}
-        >
-          {isAddedToFav ? <MdOutlineFavorite /> : <MdOutlineFavoriteBorder />}
         </button>
         <ToastContainer />
       </div>

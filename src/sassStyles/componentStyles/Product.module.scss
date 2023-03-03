@@ -11,12 +11,35 @@
   transition: transform 0.3s ease;
   margin: 24px;
 
-  &__image {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    margin-bottom: 16px;
-    border-radius: 4px;
+  &__upper {
+    @include displayFlex;
+    position: relative;
+    &__image {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 16px;
+      border-radius: 4px;
+    }
+    &__fav {
+      cursor: pointer;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      font-size: 30px;
+      color: $dark;
+      background-color: white;
+      border-radius: 50%;
+      border: none;
+      padding: 8px;
+      transition: transform 0.3s ease;
+      @include displayFlex;
+
+      &:hover {
+        color: $primary;
+        transform: scale(1.3);
+      }
+    }
   }
 
   &__content {

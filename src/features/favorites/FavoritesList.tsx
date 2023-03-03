@@ -21,7 +21,8 @@ const FavoritesList = () => {
     <main
       className={`${classes.main} ${!results?.length ? classes.empty : ""}`}
     >
-      {content}
+      <h1>Favorites</h1>
+      <div className={classes.main__content}>{content}</div>
     </main>
   );
 };
