@@ -1,5 +1,3 @@
-import { BiCaretDownCircle } from "react-icons/bi";
-
 export type DataType = {
   limit: number;
   products: ProductType[];
@@ -48,14 +46,5 @@ export class CartItem {
 export class Cart {
   cartList: CartItem[];
   totalPrice: number;
-
-  // add = (product: ProductType, amount: number = 1) => {
-  //   let cartItem = this.cartList.find((p) => p.product.id == product.id);
-  //   if (!cartItem) {
-  //     cartItem = new CartItem(product, 0);
-  //     this.cartList.push();
-  //   }
-
-  //   cartItem.amount += amount;
-  // };
+  totalAmount: number;
 }

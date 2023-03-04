@@ -5,13 +5,13 @@ type favList = {
   favorites: ProductType[];
 };
 
-const initialFavItems =
-  localStorage.getItem("favItems") !== null
-    ? JSON.parse(localStorage.getItem("favItems") || "")
+const initialStateLocal =
+  localStorage.getItem("favState") !== null
+    ? JSON.parse(localStorage.getItem("favState") || "")
     : [];
 
 const initialState: favList = {
-  favorites: initialFavItems,
+  favorites: initialStateLocal === null ? [] : initialStateLocal.favorites,
 };
 
 export const favoritesSlice = createSlice({
@@ -31,10 +31,7 @@ export const favoritesSlice = createSlice({
         );
       }
 
-      localStorage.setItem(
-        "favItems",
-        JSON.stringify(state.favorites.map((item) => item))
-      );
+      localStorage.setItem("favState", JSON.stringify(state));
     },
   },
 });
