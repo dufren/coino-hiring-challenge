@@ -1,24 +1,25 @@
 @import "../variables";
 
 .card {
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   border-radius: 8px;
   box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
   border: 1px solid #313131;
   transition: transform 0.3s ease;
-  margin: 24px;
+  margin: 16px;
 
   &__upper {
     @include displayFlex;
     position: relative;
     &__image {
+      padding: 10px;
       width: 100%;
       max-width: 300px;
-      height: auto;
-      margin-bottom: 16px;
+      max-height: 250px;
       border-radius: 4px;
     }
     &__fav {
@@ -43,6 +44,12 @@
   }
 
   &__content {
+    &__incart {
+      @include displayFlex;
+      gap: 10px;
+      font-size: 25px;
+    }
+
     &__rating {
       @include displayFlex;
       gap: 5px;
@@ -81,10 +88,18 @@
       transition: transform 0.3s ease;
       cursor: pointer;
       margin-bottom: 16px;
-      margin-left: 16px;
-
       &:hover {
         transform: scale(1.1);
+      }
+
+      &__cart__inc {
+        @extend .card__content__button;
+        font-size: 25px;
+        padding: 5px;
+      }
+
+      &__cart__dec {
+        @extend .card__content__button__cart__inc;
       }
     }
   }

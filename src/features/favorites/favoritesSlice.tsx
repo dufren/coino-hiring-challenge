@@ -8,7 +8,7 @@ type favList = {
 const initialStateLocal =
   localStorage.getItem("favState") !== null
     ? JSON.parse(localStorage.getItem("favState") || "")
-    : [];
+    : null;
 
 const initialState: favList = {
   favorites: initialStateLocal === null ? [] : initialStateLocal.favorites,

@@ -5,7 +5,7 @@ export type DataType = {
   total: number;
 };
 
-export type ProductTypeX = {
+export type ProductType = {
   brand: string;
   category: string;
   description: string;
@@ -19,32 +19,18 @@ export type ProductTypeX = {
   title: string;
 };
 
-export class ProductType {
-  brand: string;
-  category: string;
-  description: string;
-  discountPercentage: number;
-  id: number;
-  images: [image1: string, image2: string, image3: string, image4: string];
-  price: number;
-  rating: number;
-  stock: number;
-  thumbnail: string;
-  title: string;
-}
-
-export class CartItem {
+type CartItem = {
   product: ProductType;
   amount: number;
+};
 
-  constructor(product: ProductType, amount: number) {
-    this.product = product;
-    this.amount = amount;
-  }
-}
-
-export class Cart {
+export type Cart = {
   cartList: CartItem[];
   totalPrice: number;
   totalAmount: number;
-}
+};
+
+export type CardUpdate = {
+  product: ProductType;
+  amount: number;
+};

@@ -1,22 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "../../sassStyles/componentStyles/Product.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { AiFillStar } from "react-icons/ai";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { ProductType } from "../../Types";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addToFav } from "../favorites/favoritesSlice";
-import { addToCart, decrementCartItem } from "../cart/cartSlice";
+import { updateCart } from "../cart/cartSlice";
 
 type Props = {
   product: ProductType;
   inFav: boolean;
   inCart: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
+const SingleProduct: React.FC<Props> = ({
+  product,
+  inFav,
+  inCart,
+  setModalOpen,
+}) => {
   const dispatch = useAppDispatch();
+
+  const cart = useAppSelector((store) => store.cart.cartList);
+  const amount = cart.find((p) => p.product.id === product.id)?.amount ?? 0;
 
   const toastNotify = (message: string) => {
     toast.info(`${message}`, {
@@ -42,19 +51,21 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
   };
 
   const addToCartHandle = () => {
-    if (!inCart) {
-      dispatch(addToCart(product));
-      toastNotify(`${product.title} added to cart!`);
-    } else {
-      toastNotify(`${product.title} already in cart!`);
-    }
+    dispatch(updateCart({ product: product, amount: 1 }));
+    toastNotify(`${product.title} added to cart!`);
   };
 
   const decrementCartItemHandle = () => {
     if (inCart) {
-      dispatch(decrementCartItem(product.id));
+      dispatch(updateCart({ product: product, amount: -1 }));
       toastNotify(`${product.title} removed from cart!`);
     }
+  };
+
+  const removeFromCartHandle = () => {
+    dispatch(updateCart({ product: product, amount: -amount }));
+    setModalOpen(true);
+    toastNotify(`${product.title} removed from cart!`);
   };
 
   return (
@@ -91,13 +102,31 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
             </button>
           ) : (
             <button
-              onClick={decrementCartItemHandle}
+              onClick={removeFromCartHandle}
               className={classes.card__content__button}
             >
               Remove from cart
             </button>
           )}
         </div>
+
+        {inCart && (
+          <div className={classes.card__content__incart}>
+            <button
+              onClick={decrementCartItemHandle}
+              className={classes.card__content__button__cart__inc}
+            >
+              -
+            </button>
+            <span>{amount}</span>
+            <button
+              onClick={addToCartHandle}
+              className={classes.card__content__button__cart__dec}
+            >
+              +
+            </button>
+          </div>
+        )}
 
         <ToastContainer />
       </div>
