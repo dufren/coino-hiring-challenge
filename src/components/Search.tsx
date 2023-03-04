@@ -18,7 +18,7 @@ const Search: React.FC<Props> = ({ data, setProducts }) => {
   function filterProducts(data: ProductType[]) {
     const searchString = searchValue?.current?.value?.toLocaleLowerCase() ?? "";
 
-    let filteredProducts = data.filter((product) => {
+    const filteredProducts = data.filter((product) => {
       return product.title.toLocaleLowerCase().includes(searchString);
     });
     return filteredProducts;
@@ -38,7 +38,7 @@ const Search: React.FC<Props> = ({ data, setProducts }) => {
   }
 
   const filterAndSort = () => {
-    let filteredProducts = filterProducts(data);
+    const filteredProducts = filterProducts(data);
     sortProducts(filteredProducts);
     setProducts(filteredProducts);
   };

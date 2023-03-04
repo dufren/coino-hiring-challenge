@@ -12,7 +12,7 @@
   border: 1px solid #313131;
 
   @include xs-breakpoint() {
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: center;
     gap: 10px;
 

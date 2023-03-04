@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import classes from "../../sassStyles/componentStyles/CartList.module.scss";
 import SingleProduct from "../products/SingleProduct";
 import { useAppSelector } from "../../app/hooks";
+import { ToastContainer } from "react-toastify";
 
 const CartList = () => {
   const favList = useAppSelector((store) => store.favorites.favorites);
   const cartList = useAppSelector((store) => store.cart.cartList);
   const totalPrice = useAppSelector((store) => store.cart.totalPrice);
 
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const results = cartList.map((cartItem) => (
     <SingleProduct
@@ -19,7 +20,7 @@ const CartList = () => {
       key={cartItem.product.id}
     />
   ));
-
+  console.log(modalOpen);
   const content = results?.length ? (
     results
   ) : (
@@ -53,6 +54,8 @@ const CartList = () => {
           <button className={classes.modal__buttons__btn}>btn2</button>
         </div>
       </div>
+
+      <ToastContainer />
     </main>
   );
 };

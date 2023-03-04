@@ -2,6 +2,7 @@ import React from "react";
 import classes from "../../sassStyles/componentStyles/FavoritesList.module.scss";
 import SingleProduct from "../products/SingleProduct";
 import { useAppSelector } from "../../app/hooks";
+import { ToastContainer } from "react-toastify";
 
 const FavoritesList = () => {
   const favList = useAppSelector((store) => store.favorites.favorites);
@@ -32,6 +33,7 @@ const FavoritesList = () => {
       >
         {content}
       </div>
+      <ToastContainer />
     </main>
   );
 };

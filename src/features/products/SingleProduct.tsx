@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "../../sassStyles/componentStyles/Product.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -8,6 +8,7 @@ import { ProductType } from "../../Types";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addToFav } from "../favorites/favoritesSlice";
 import { updateCart } from "../cart/cartSlice";
+import { useLocation } from "react-router-dom";
 
 type Props = {
   product: ProductType;
@@ -23,6 +24,7 @@ const SingleProduct: React.FC<Props> = ({
   setModalOpen,
 }) => {
   const dispatch = useAppDispatch();
+  const location = useLocation();
 
   const cart = useAppSelector((store) => store.cart.cartList);
   const amount = cart.find((p) => p.product.id === product.id)?.amount ?? 0;
@@ -110,7 +112,7 @@ const SingleProduct: React.FC<Props> = ({
           )}
         </div>
 
-        {inCart && (
+        {location.pathname === "/cart" && (
           <div className={classes.card__content__incart}>
             <button
               onClick={decrementCartItemHandle}
@@ -127,8 +129,6 @@ const SingleProduct: React.FC<Props> = ({
             </button>
           </div>
         )}
-
-        <ToastContainer />
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import SingleProduct from "./SingleProduct";
 import Search from "../../components/Search";
 
 import { useAppSelector } from "../../app/hooks";
+import { ToastContainer } from "react-toastify";
 
 const ProductsList = () => {
   const { data, isLoading, isError, isSuccess } =
@@ -62,6 +63,7 @@ const ProductsList = () => {
         >
           {content}
         </div>
+        <ToastContainer />
       </main>
     );
   }

@@ -41,7 +41,7 @@
   z-index: 1;
 
   &.open {
-    display: none;
+    display: flex;
   }
 
   &__content {
