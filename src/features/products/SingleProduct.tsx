@@ -1,67 +1,60 @@
+import React from "react";
 import classes from "../../sassStyles/componentStyles/Product.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
-
 import { AiFillStar } from "react-icons/ai";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
-
-import type { PropDataType } from "../../Types";
-
-import { useEffect, useState } from "react";
+import { ProductType } from "../../Types";
 import { useAppDispatch } from "../../app/hooks";
 import { addToFav } from "../favorites/favoritesSlice";
-import { addToCart } from "../cart/cartSlice";
+import { addToCart, decrementCartItem } from "../cart/cartSlice";
 
-const SingleProduct = ({ product }: PropDataType) => {
-  const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const [isAddedToFav, setIsAddedToFav] = useState(false);
+type Props = {
+  product: ProductType;
+  inFav: boolean;
+  inCart: boolean;
+};
 
-  useEffect(() => {
-    setIsAddedToFav(
-      localStorage.getItem(String(product.id)) !== null
-        ? JSON.parse(localStorage.getItem(String(product.id)) ?? "")
-        : false
-    );
-  }, [isAddedToFav]);
-
+const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
   const dispatch = useAppDispatch();
 
+  const toastNotify = (message: string) => {
+    toast.info(`${message}`, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   const addToFavHandle = () => {
-    !isAddedToFav
-      ? localStorage.setItem(String(product.id), JSON.stringify(!isAddedToFav))
-      : localStorage.removeItem(String(product.id));
     dispatch(addToFav(product));
 
-    setIsAddedToFav(!isAddedToFav);
-
-    if (!isAddedToFav) {
-      toast.success(`${product.title} added to favorites`, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+    if (!inFav) {
+      toastNotify(`${product.title} added to favorites!`);
     } else {
-      toast.warn(`${product.title} removed from favorites`, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      toastNotify(`${product.title} removed from favorites!`);
     }
   };
 
   const addToCartHandle = () => {
-    setIsAddedToCart(true);
-    dispatch(addToCart(product));
+    if (!inCart) {
+      dispatch(addToCart(product));
+      toastNotify(`${product.title} added to cart!`);
+    } else {
+      toastNotify(`${product.title} already in cart!`);
+    }
+  };
+
+  const decrementCartItemHandle = () => {
+    if (inCart) {
+      dispatch(decrementCartItem(product.id));
+      toastNotify(`${product.title} removed from cart!`);
+    }
   };
 
   return (
@@ -73,7 +66,7 @@ const SingleProduct = ({ product }: PropDataType) => {
           className={classes.card__upper__image}
         />
         <button onClick={addToFavHandle} className={classes.card__upper__fav}>
-          {isAddedToFav ? <MdOutlineFavorite /> : <MdOutlineFavoriteBorder />}
+          {inFav ? <MdOutlineFavorite /> : <MdOutlineFavoriteBorder />}
         </button>
       </div>
 
@@ -88,13 +81,24 @@ const SingleProduct = ({ product }: PropDataType) => {
         </span>
 
         <div className={classes.card__content__price}>${product.price}</div>
+        <div>
+          {!inCart ? (
+            <button
+              onClick={addToCartHandle}
+              className={classes.card__content__button}
+            >
+              Add to cart
+            </button>
+          ) : (
+            <button
+              onClick={decrementCartItemHandle}
+              className={classes.card__content__button}
+            >
+              Remove from cart
+            </button>
+          )}
+        </div>
 
-        <button
-          onClick={addToCartHandle}
-          className={classes.card__content__button}
-        >
-          {isAddedToCart ? "Added to cart" : "Add to cart"}
-        </button>
         <ToastContainer />
       </div>
     </div>

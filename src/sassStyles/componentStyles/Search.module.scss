@@ -8,7 +8,8 @@
   background-color: inherit;
   border-radius: 5px;
   margin: 50px 50px 0 50px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
+  border: 1px solid #313131;
 
   @include xs-breakpoint() {
     flex-direction: column;

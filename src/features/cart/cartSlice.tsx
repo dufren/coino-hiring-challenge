@@ -1,17 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { ProductType } from "../../Types";
+import { ProductType, Cart } from "../../Types";
 
-type cartList = {
-  cart: ProductType[];
-};
-
-const initialCartItems =
-  localStorage.getItem("cartItems") !== null
-    ? JSON.parse(localStorage.getItem("cartItems") || "")
+const initialCartList =
+  localStorage.getItem("cartList") !== null
+    ? JSON.parse(localStorage.getItem("cartList") || "")
     : [];
 
-const initialState: cartList = {
-  cart: initialCartItems,
+const initialState: Cart = {
+  cartList: initialCartList,
+  totalPrice: 0,
 };
 
 export const cartSlice = createSlice({
@@ -19,22 +16,48 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<ProductType>) => {
-      const isExisted = state.cart.some(
-        (item) => item.id === action.payload.id
+      const isExisted = state.cartList.some(
+        (item) => item.product.id === action.payload.id
       );
 
       if (!isExisted) {
-        state.cart.push(action.payload);
+        state.cartList.push({ product: action.payload, amount: 1 });
+      } else {
+        const cartItem = state.cartList.find(
+          (item) => item.product.id === action.payload.id
+        );
+
+        if (cartItem != undefined) cartItem.amount += 1;
       }
 
       localStorage.setItem(
-        "cartItems",
-        JSON.stringify(state.cart.map((item) => item))
+        "cartList",
+        JSON.stringify(state.cartList.map((item) => item))
+      );
+    },
+    decrementCartItem: (state, action: PayloadAction<number>) => {
+      const cartItem = state.cartList.find(
+        (item) => item.product.id === action.payload
+      );
+
+      if (cartItem != undefined) {
+        cartItem.amount -= 1;
+
+        if (0 >= cartItem.amount) {
+          state.cartList = state.cartList.filter(
+            (item) => item.product.id !== action.payload
+          );
+        }
+      }
+
+      localStorage.setItem(
+        "cartList",
+        JSON.stringify(state.cartList.map((item) => item))
       );
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, decrementCartItem } = cartSlice.actions;
 
 export default cartSlice.reducer;

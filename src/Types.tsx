@@ -1,3 +1,12 @@
+import { BiCaretDownCircle } from "react-icons/bi";
+
+export type DataType = {
+  limit: number;
+  products: ProductType[];
+  skip: number;
+  total: number;
+};
+
 export type ProductTypeX = {
   brand: string;
   category: string;
@@ -37,38 +46,16 @@ export class CartItem {
 }
 
 export class Cart {
-  liste: CartItem[];
+  cartList: CartItem[];
+  totalPrice: number;
 
-  add = (product: ProductType, amount: number = 1) => {
-    const cartItem = this.liste.filter((p) => p.product.id == product.id);
-    if (cartItem) {
-      if (cartItem.length == 1) cartItem[0].amount += amount;
-      else throw new Error("Unexpected number of products");
-    } else {
-      this.liste.push(new CartItem(product, amount));
-    }
-  };
+  // add = (product: ProductType, amount: number = 1) => {
+  //   let cartItem = this.cartList.find((p) => p.product.id == product.id);
+  //   if (!cartItem) {
+  //     cartItem = new CartItem(product, 0);
+  //     this.cartList.push();
+  //   }
+
+  //   cartItem.amount += amount;
+  // };
 }
-
-export type PropDataType = {
-  product: {
-    brand: string;
-    category: string;
-    description: string;
-    discountPercentage: number;
-    id: number;
-    images: [image1: string, image2: string, image3: string, image4: string];
-    price: number;
-    rating: number;
-    stock: number;
-    thumbnail: string;
-    title: string;
-  };
-};
-
-export type DataType = {
-  limit: number;
-  products: ProductType[];
-  skip: number;
-  total: number;
-};

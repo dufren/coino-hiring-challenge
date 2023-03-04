@@ -1,14 +1,19 @@
+import React from "react";
 import classes from "../../sassStyles/componentStyles/FavoritesList.module.scss";
-
 import SingleProduct from "../products/SingleProduct";
-
 import { useAppSelector } from "../../app/hooks";
 
 const FavoritesList = () => {
-  const favoriteList = useAppSelector((store) => store.favorites.favorites);
+  const favList = useAppSelector((store) => store.favorites.favorites);
+  const cartList = useAppSelector((store) => store.cart.cartList);
 
-  const results = favoriteList.map((product) => (
-    <SingleProduct product={product} key={product.id} />
+  const results = favList.map((favItem) => (
+    <SingleProduct
+      inFav={favList.some((p) => p.id === favItem.id)}
+      inCart={cartList.some((p) => p.product.id === favItem.id)}
+      product={favItem}
+      key={favItem.id}
+    />
   ));
 
   const content = results?.length ? (
@@ -18,11 +23,15 @@ const FavoritesList = () => {
   );
 
   return (
-    <main
-      className={`${classes.main} ${!results?.length ? classes.empty : ""}`}
-    >
+    <main className={classes.main}>
       <h1>Favorites</h1>
-      <div className={classes.main__content}>{content}</div>
+      <div
+        className={`${classes.main__content} ${
+          !results?.length ? classes.empty : ""
+        }`}
+      >
+        {content}
+      </div>
     </main>
   );
 };
