@@ -1,33 +1,5 @@
 @import "../variables";
 
-.main {
-  text-align: center;
-  margin-top: 16px;
-
-  &__content {
-    display: grid;
-    text-align: center;
-    padding: 30px;
-    height: 100vh;
-
-    @include md-breakpoint() {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-
-      &.empty {
-        display: block;
-      }
-    }
-
-    @include lg-breakpoint() {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-
-      &.empty {
-        display: block;
-      }
-    }
-  }
-}
-
 .modal {
   &.open {
     display: flex;
@@ -47,9 +19,10 @@
   &__content {
     background-color: #fff;
     border-radius: 8px;
-    padding: 16px;
+    padding: 24px;
+    margin: 24px;
     text-align: center;
-    width: 400px;
+    width: 600px;
 
     h2 {
       font-size: 24px;

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "../../sassStyles/componentStyles/Product.module.scss";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { AiFillStar } from "react-icons/ai";
 import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
 import { ProductType } from "../../Types";
@@ -14,17 +14,13 @@ type Props = {
   product: ProductType;
   inFav: boolean;
   inCart: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SingleProduct: React.FC<Props> = ({
-  product,
-  inFav,
-  inCart,
-  setModalOpen,
-}) => {
+const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
   const dispatch = useAppDispatch();
   const location = useLocation();
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   const cart = useAppSelector((store) => store.cart.cartList);
   const amount = cart.find((p) => p.product.id === product.id)?.amount ?? 0;
@@ -65,9 +61,19 @@ const SingleProduct: React.FC<Props> = ({
   };
 
   const removeFromCartHandle = () => {
-    dispatch(updateCart({ product: product, amount: -amount }));
-    setModalOpen(true);
-    toastNotify(`${product.title} removed from cart!`);
+    if (location.pathname === "/cart") {
+      setModalOpen(true);
+    } else {
+      dispatch(updateCart({ product: product, amount: -amount }));
+      toastNotify(`${product.title} removed from cart!`);
+    }
+  };
+
+  const removeAndFavHandle = () => {
+    dispatch(addToFav(product));
+    dispatch(updateCart({ product, amount: -amount }));
+    toastNotify(`${product.title} removed and favorited`);
+    setModalOpen(false);
   };
 
   return (
@@ -130,6 +136,31 @@ const SingleProduct: React.FC<Props> = ({
           </div>
         )}
       </div>
+
+      {modalOpen && location.pathname === "/cart" && (
+        <div className={`${classes.modal} ${modalOpen ? classes.open : ""}`}>
+          <div className={classes.modal__content}>
+            <h2>Ürünü sepetten kaldırmak istediğinize emin misiniz?</h2>
+            <p>{product.title}</p>
+            <div className={classes.modal__content__buttons}>
+              <button
+                onClick={removeFromCartHandle}
+                className={classes.modal__content__buttons__btn}
+              >
+                Remove from cart
+              </button>
+              {!inFav && (
+                <button
+                  onClick={removeAndFavHandle}
+                  className={classes.modal__content__buttons__btn}
+                >
+                  Remove and add to favorites
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
