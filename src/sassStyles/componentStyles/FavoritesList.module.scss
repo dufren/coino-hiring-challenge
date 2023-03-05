@@ -1,28 +1,8 @@
 @import "../variables";
 
 .main {
-  text-align: center;
-  margin-top: 16px;
-
+  @include listMargin;
   &__content {
-    display: grid;
-    text-align: center;
-    padding: 30px;
-
-    @include md-breakpoint() {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-
-      &.empty {
-        display: block;
-      }
-    }
-
-    @include lg-breakpoint() {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-
-      &.empty {
-        display: block;
-      }
-    }
+    @include listTemplate;
   }
 }
