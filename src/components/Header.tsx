@@ -2,8 +2,8 @@ import classes from "../sassStyles/componentStyles/Header.module.scss";
 
 import { BiMenuAltRight, BiSun, BiMoon } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 type Props = {
   theme: string;
@@ -12,6 +12,13 @@ type Props = {
 
 const Header: React.FC<Props> = ({ theme, setTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log(location.pathname);
+    setIsMenuOpen(false);
+  }, [location]);
 
   return (
     <header className={classes.header}>
