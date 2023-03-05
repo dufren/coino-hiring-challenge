@@ -4,7 +4,6 @@ import { BiMenuAltRight, BiSun, BiMoon } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useAppSelector } from "../app/hooks";
 
 type Props = {
   theme: string;
@@ -15,8 +14,6 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const location = useLocation();
-  const totalAmount = useAppSelector((store) => store.cart.totalAmount);
-  console.log(totalAmount);
 
   useEffect(() => {
     setIsMenuOpen(false);
@@ -37,7 +34,9 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
               <Link to={"/favorites"}>Favorites</Link>
             </li>
             <li>
-              <Link to={"/cart"}>Cart</Link>
+              <div>
+                <Link to={"/cart"}>Cart</Link>
+              </div>
             </li>
             <li>
               <Link to={"/address"}>Address</Link>
