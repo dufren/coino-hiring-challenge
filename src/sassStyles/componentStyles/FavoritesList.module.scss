@@ -8,7 +8,6 @@
     display: grid;
     text-align: center;
     padding: 30px;
-    height: 100vh;
 
     @include md-breakpoint() {
       grid-template-columns: repeat(2, minmax(0, 1fr));
