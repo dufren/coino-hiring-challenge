@@ -4,6 +4,7 @@ import { BiMenuAltRight, BiSun, BiMoon } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
 
 type Props = {
   theme: string;
@@ -15,6 +16,7 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
   const [width, setWidth] = useState(0);
 
   const location = useLocation();
+  const amount = useAppSelector((store) => store.cart.totalAmount);
 
   useEffect(() => {
     function handleResize() {
@@ -47,7 +49,9 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
   return (
     <header className={classes.header}>
       <div className={classes.header__content}>
-        <h1 className={classes.header__content__logo}>COINO</h1>
+        <h1 className={classes.header__content__logo}>
+          <Link to={"/"}>COINO</Link>
+        </h1>
 
         <nav className={classes.header__content__nav}>
           <ul className={`${!isMenuOpen ? classes.close : ""}`}>
@@ -60,7 +64,7 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
             </li>
             <li>
               <div>
-                <Link to={"/cart"}>Cart</Link>
+                <Link to={"/cart"}>Cart({amount})</Link>
               </div>
             </li>
             <li>

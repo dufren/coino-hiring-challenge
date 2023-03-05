@@ -17,7 +17,11 @@
       cursor: pointer;
       width: 100px;
       transition: 0.3s ease all;
-      @include hoverPrimary;
+      a {
+        text-decoration: none;
+        color: var(--text-color);
+        @include hoverPrimary;
+      }
     }
 
     &__toggler {
@@ -34,6 +38,7 @@
     &__nav {
       &__toggler {
         transition: 0.3s ease all;
+        cursor: pointer;
         font-size: 25px;
         @include hoverPrimary;
       }

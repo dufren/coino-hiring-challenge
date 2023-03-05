@@ -25,6 +25,14 @@
       display: block;
     }
   }
+
+  @include xl-breakpoint() {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    &.empty {
+      display: block;
+    }
+  }
 }
 
 .form {
