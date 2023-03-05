@@ -12,18 +12,37 @@ type Props = {
 
 const Header: React.FC<Props> = ({ theme, setTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [width, setWidth] = useState(0);
 
   const location = useLocation();
 
   useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location]);
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   useEffect(() => {
+    if (width > 1024 && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+
     if (isMenuOpen) {
       document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
     }
-  }, [isMenuOpen]);
+  }, [width, isMenuOpen]);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
 
   return (
     <header className={classes.header}>
