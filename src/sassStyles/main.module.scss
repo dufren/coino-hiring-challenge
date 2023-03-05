@@ -9,13 +9,34 @@
 :root {
   font-family: $Prompt;
   width: 100%;
-  color: $light;
-  background-color: $dark;
+  --primary: #1ecad3;
+  --bg-color: #161518;
+  --card-bg-color: #222526;
+  --text-color: #c4cbcb;
+  --fav-icon-bg-color: #fff;
+  --btn-text-color: black;
+  --card-hover-shadow: 0 25px 50px -12px rgba(194, 194, 194, 0.25);
+  --card-border: 1px solid #313131;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 [data-theme="light"] {
   font-family: $Prompt;
   width: 100%;
-  color: $dark;
-  background-color: $light;
+  --primary: #1ecad3;
+  --bg-color: #fff;
+  --card-bg-color: #ffffff;
+  --text-color: #161518;
+  --fav-icon-bg-color: #fff;
+  --btn-text-color: black;
+  --card-hover-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px,
+    rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px,
+    rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px,
+    rgba(0, 0, 0, 0.07) 0px 32px 64px;
+  --card-border: 1px solid #bdbbbb;
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }

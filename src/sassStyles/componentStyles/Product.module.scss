@@ -1,4 +1,5 @@
 @import "../variables";
+@import "../main.module.scss";
 
 .card {
   max-height: 500px;
@@ -7,10 +8,14 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
-  box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
-  border: 1px solid #313131;
   transition: transform 0.3s ease;
   margin: 16px;
+  background-color: var(--card-bg-color);
+  border: var(--card-border);
+
+  &:hover {
+    box-shadow: var(--card-hover-shadow);
+  }
 
   &__upper {
     @include displayFlex;
@@ -28,8 +33,8 @@
       top: 0px;
       right: 0px;
       font-size: 30px;
-      color: $dark;
-      background-color: $light;
+      color: var(--primary);
+      background-color: var(--fav-icon-bg-color);
       border-radius: 50%;
       border: none;
       padding: 8px;
@@ -37,7 +42,6 @@
       @include displayFlex;
 
       &:hover {
-        color: $primary;
         transform: scale(1.3);
       }
     }
@@ -83,8 +87,8 @@
       padding: 10px;
       border: none;
       border-radius: 6px;
-      background-color: $primary;
-      color: $dark;
+      background-color: var(--primary);
+      color: var(--btn-text-color);
       transition: transform 0.3s ease;
       cursor: pointer;
       margin-bottom: 16px;
@@ -96,7 +100,7 @@
       &__cart__inc {
         background: none;
         border: none;
-        color: inherit;
+        color: var(--primary);
         font-size: 25px;
         cursor: pointer;
         transition: transform 0.3s ease;
@@ -141,12 +145,12 @@
     h2 {
       font-size: 24px;
       margin-bottom: 16px;
-      color: $dark;
+      color: var(--btn-text-color);
     }
 
     p {
       margin-bottom: 16px;
-      color: $dark;
+      color: var(--btn-text-color);
     }
 
     &__buttons {

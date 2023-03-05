@@ -1,7 +1,7 @@
 @import "../variables";
 
 .header {
-  box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
+  border-bottom: var(--card-border);
   height: 100px;
   width: 100%;
   padding: 0 1.5rem;
@@ -55,7 +55,7 @@
           height: 100%;
           width: 100%;
           padding-top: 150px;
-          background-color: $light-dark;
+          background-color: var(--card-bg-color);
           text-align: center;
           transition: 0.3s ease all;
           font-size: 30px;
@@ -65,14 +65,14 @@
         li {
           a {
             text-decoration: none;
-            color: inherit;
+            color: var(--text-color);
             padding: 0.75rem 1.25rem;
             border-radius: 16px;
             transition: 0.3s ease all;
 
             &:hover {
-              background: rgba($light, 0.1);
-              color: $primary;
+              background: rgba(#c4cbcb, 0.1);
+              color: var(--primary);
             }
           }
         }

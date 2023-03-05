@@ -3,13 +3,6 @@
 // font family
 $Prompt: "Prompt", sans-serif;
 
-// colors
-$dark: #161518;
-$light-dark: #222526;
-$card-bg: #313232;
-$light: #c4cbcb;
-$primary: #1ecad3;
-
 // mixin
 @mixin displayFlex {
   display: flex;
@@ -19,7 +12,7 @@ $primary: #1ecad3;
 
 @mixin hoverPrimary {
   &:hover {
-    color: $primary;
+    color: var(--primary);
   }
 }
 

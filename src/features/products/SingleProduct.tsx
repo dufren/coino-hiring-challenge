@@ -82,6 +82,12 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
     setModalOpen(false);
   };
 
+  const modalRemoveFromCartHandle = () => {
+    // works when the modal is open
+    dispatch(updateCart({ product: product, amount: -amount })); //-amount equals the amount at the store. so basically  removes it.
+    toastNotify(`${product.title} removed from cart!`);
+  };
+
   return (
     <div className={classes.card}>
       <div className={classes.card__upper}>
@@ -151,7 +157,7 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
             <p>{product.title}</p>
             <div className={classes.modal__content__buttons}>
               <button
-                onClick={removeFromCartHandle}
+                onClick={modalRemoveFromCartHandle}
                 className={classes.modal__content__buttons__btn}
               >
                 Remove from cart

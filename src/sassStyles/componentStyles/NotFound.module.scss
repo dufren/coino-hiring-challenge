@@ -25,8 +25,8 @@
           transition: 0.3s ease all;
 
           &:hover {
-            background: rgba($light, 0.1);
-            color: $primary;
+            background: rgba(#c4cbcb, 0.1);
+            color: var(--primary);
           }
         }
       }

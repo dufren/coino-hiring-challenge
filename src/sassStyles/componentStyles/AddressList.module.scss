@@ -59,7 +59,7 @@
       margin-left: 25px;
       padding: 10px;
       border-radius: 10px;
-      border: none;
+      border: var(--card-border);
       outline: none;
       width: 100%;
     }
@@ -71,8 +71,8 @@
     padding: 10px;
     border: none;
     border-radius: 6px;
-    background-color: $primary;
-    color: $dark;
+    background-color: var(--primary);
+    color: var(--btn-text-color);
     transition: transform 0.3s ease;
     cursor: pointer;
     margin: 24px;
@@ -91,8 +91,12 @@
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
-  box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
-  border: 1px solid #313131;
+  background-color: var(--card-bg-color);
+  border: var(--card-border);
   padding: 10px;
   margin: 10px;
+
+  &:hover {
+    box-shadow: var(--card-hover-shadow);
+  }
 }
