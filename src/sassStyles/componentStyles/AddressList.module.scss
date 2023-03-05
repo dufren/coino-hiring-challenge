@@ -30,7 +30,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
   padding: 2rem;
 
@@ -49,7 +49,7 @@
 
     &__msg {
       font-size: 14px;
-      margin-left: 44px;
+      padding-left: 24px;
       color: #ff445a;
     }
   }
@@ -61,7 +61,6 @@
       margin-bottom: 0.5rem;
     }
     input {
-      margin-left: 25px;
       padding: 10px;
       border-radius: 10px;
       border: var(--card-border);
@@ -71,21 +70,7 @@
   }
 
   button {
-    font-family: inherit;
-    font-weight: 500;
-    padding: 10px;
-    border: none;
-    border-radius: 6px;
-    background-color: var(--primary);
-    color: var(--btn-text-color);
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    margin: 24px;
-    width: 100%;
-
-    &:hover {
-      transform: scale(1.1);
-    }
+    @include buttonTemplate;
   }
 }
 
