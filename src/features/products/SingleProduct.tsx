@@ -3,7 +3,8 @@ import classes from "../../sassStyles/componentStyles/Product.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { AiFillStar } from "react-icons/ai";
-import { MdOutlineFavoriteBorder, MdOutlineFavorite } from "react-icons/md";
+import { MdOutlineFavorite } from "react-icons/md";
+import { TiTick } from "react-icons/ti";
 import { ProductType } from "../../Types";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addToFav } from "../favorites/favoritesSlice";
@@ -84,7 +85,7 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
           className={classes.card__upper__image}
         />
         <button onClick={addToFavHandle} className={classes.card__upper__fav}>
-          {inFav ? <MdOutlineFavorite /> : <MdOutlineFavoriteBorder />}
+          {inFav ? <TiTick /> : <MdOutlineFavorite />}
         </button>
       </div>
 
