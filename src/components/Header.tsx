@@ -21,9 +21,7 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
 
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.classList.add("no-scroll");
-    } else {
-      document.body.classList.remove("no-scroll");
+      document.body.style.overflow = "hidden";
     }
   }, [isMenuOpen]);
 

@@ -10,12 +10,12 @@ const AddressSchema = Yup.object().shape({
   //yup for validating inputs
   name: Yup.string()
     .min(2, "Name is too short!")
-    .max(50, "Name is too long!")
+    .max(20, "Name is too long!")
     .required("Name is required"),
 
   surname: Yup.string()
     .min(2, "Surname is too short!")
-    .max(50, "Surname is too long!")
+    .max(20, "Surname is too long!")
     .required("Surname is required"),
 
   phone: Yup.string()
@@ -25,7 +25,7 @@ const AddressSchema = Yup.object().shape({
 
   city: Yup.string()
     .min(2, "City is too short!")
-    .max(50, "City is too long!")
+    .max(20, "City is too long!")
     .required("City is required"),
 
   district: Yup.string()
@@ -35,7 +35,7 @@ const AddressSchema = Yup.object().shape({
 
   address: Yup.string()
     .min(2, "Address is too short!")
-    .max(50, "Address is too long!")
+    .max(20, "Address is too long!")
     .required("Address is required"),
 
   doorNumber: Yup.string()
