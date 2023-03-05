@@ -21,18 +21,18 @@
       display: none;
       font-size: 30px;
       cursor: pointer;
-      @include xs-breakpoint() {
+      @include md2-breakpoint() {
         display: block;
         z-index: 100;
       }
-      &:hover {
-        color: $primary;
-      }
+      @include hoverPrimary;
     }
 
     &__nav {
       &__toggler {
+        transition: 0.3s ease all;
         font-size: 25px;
+        @include hoverPrimary;
       }
 
       ul {
@@ -40,7 +40,7 @@
         list-style: none;
         gap: 25px;
 
-        @include xs-breakpoint() {
+        @include md2-breakpoint() {
           &.close {
             display: none;
           }

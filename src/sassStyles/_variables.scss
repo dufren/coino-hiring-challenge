@@ -17,6 +17,12 @@ $primary: #1ecad3;
   justify-content: center;
 }
 
+@mixin hoverPrimary {
+  &:hover {
+    color: $primary;
+  }
+}
+
 // breakpoints
 $xsBreakpoint: 576px;
 $smBreakpoint: 768px;
@@ -37,7 +43,7 @@ $xlBreakpoint: 1440px;
   }
 }
 
-@mixin sm2-breakpoint {
+@mixin md2-breakpoint {
   @media only screen and (max-width: $mdBreakpoint) {
     @content;
   }

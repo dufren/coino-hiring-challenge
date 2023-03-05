@@ -22,12 +22,11 @@ const ProductsList = () => {
   useEffect(() => {
     // data comes undefined. when fetch is done data changes and useeffect catching it
     data && setProducts(data.products);
-  }, [data]);
+  }, [isSuccess]);
 
   let deneme;
 
   if (isLoading) {
-    console.log("first");
     // while data is getting fetch displaying loader
     deneme = (
       <div className={classes.loader}>

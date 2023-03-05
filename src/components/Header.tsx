@@ -35,6 +35,9 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
               <Link to={"/cart"}>Cart</Link>
             </li>
             <li>
+              <Link to={"/address"}>Address</Link>
+            </li>
+            <li>
               {theme === "dark" ? (
                 <BiSun
                   onClick={() => setTheme("light")}
