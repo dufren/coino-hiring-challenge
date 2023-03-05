@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 
 import classes from "../sassStyles/componentStyles/Layout.module.scss";
+import Footer from "./Footer";
 
 const Layout = () => {
   const [theme, setTheme] = useState("dark");
@@ -14,6 +15,7 @@ const Layout = () => {
       <div className={classes.container__content}>
         <Outlet />
       </div>
+      <Footer />
     </div>
   );
 };
