@@ -16,11 +16,7 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
   return (
     <header className={classes.header}>
       <div className={classes.header__content}>
-        <img
-          className={classes.header__content__logo}
-          src="../../public/coino-logo.svg"
-          alt="coino-logo"
-        />
+        <h1 className={classes.header__content__logo}>COINO</h1>
 
         <nav className={classes.header__content__nav}>
           <ul className={`${!isMenuOpen ? classes.close : ""}`}>
