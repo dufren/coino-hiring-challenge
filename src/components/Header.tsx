@@ -46,6 +46,16 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
     setIsMenuOpen(false);
   }, [location]);
 
+  const setThemeLight = () => {
+    setTheme("light");
+    localStorage.setItem("theme", JSON.stringify("light"));
+  };
+
+  const setThemeDark = () => {
+    setTheme("dark");
+    localStorage.setItem("theme", JSON.stringify("dark"));
+  };
+
   return (
     <header className={classes.header}>
       <div className={classes.header__content}>
@@ -73,12 +83,12 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
             <li>
               {theme === "dark" ? (
                 <BiSun
-                  onClick={() => setTheme("light")}
+                  onClick={setThemeLight}
                   className={classes.header__content__nav__toggler}
                 />
               ) : (
                 <BiMoon
-                  onClick={() => setTheme("dark")}
+                  onClick={setThemeDark}
                   className={classes.header__content__nav__toggler}
                 />
               )}

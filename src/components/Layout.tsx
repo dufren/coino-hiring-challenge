@@ -6,7 +6,11 @@ import classes from "../sassStyles/componentStyles/Layout.module.scss";
 import Footer from "./Footer";
 
 const Layout = () => {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") !== null
+      ? JSON.parse(localStorage.getItem("theme") || "")
+      : "dark"
+  );
 
   return (
     // layout exists to be able to set up nested structre
