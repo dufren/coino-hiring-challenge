@@ -1,0 +1,98 @@
+@import "../variables";
+
+.address {
+  display: grid;
+  text-align: center;
+  padding: 30px;
+
+  @include md-breakpoint() {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    &.empty {
+      display: block;
+    }
+  }
+
+  @include lg-breakpoint() {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    &.empty {
+      display: block;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  &__wrapper {
+    &__valid {
+      input {
+        border: none;
+      }
+    }
+
+    &__invalid {
+      input {
+        border: 2px solid #ff445a !important;
+      }
+    }
+
+    &__msg {
+      font-size: 14px;
+      margin-left: 44px;
+      color: #ff445a;
+    }
+  }
+
+  div {
+    margin-bottom: 10px;
+    label {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+    input {
+      margin-left: 25px;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      width: 100%;
+    }
+  }
+
+  button {
+    font-family: inherit;
+    font-weight: 500;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background-color: $primary;
+    color: $dark;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    margin: 24px;
+    width: 100%;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.singleAddress {
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
+  border: 1px solid #313131;
+  padding: 10px;
+  margin: 10px;
+}

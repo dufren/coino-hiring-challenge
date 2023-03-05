@@ -34,3 +34,13 @@ export type CardUpdate = {
   product: ProductType;
   amount: number;
 };
+
+export type AddressValue = {
+  name: string;
+  surname: string;
+  phone: string;
+  city: string;
+  district: string;
+  address: string;
+  doorNumber: string;
+};

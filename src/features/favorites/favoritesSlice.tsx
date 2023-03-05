@@ -26,7 +26,7 @@ export const favoritesSlice = createSlice({
       );
 
       if (!isExisted) {
-        // if not addes
+        // if not adds
         state.favorites.push(action.payload);
       } else {
         // if in list, removes

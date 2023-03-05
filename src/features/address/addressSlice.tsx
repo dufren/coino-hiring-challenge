@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { ProductType } from "../../Types";
-
+import type { AddressValue } from "../../Types";
 type addressList = {
-  addresses: ProductType[];
+  addresses: AddressValue[];
 };
 
 const initialStateLocal = // checking localstorage to keep data in cache
@@ -11,15 +10,28 @@ const initialStateLocal = // checking localstorage to keep data in cache
     : null;
 
 const initialState: addressList = {
-  addresses: initialStateLocal === null ? [] : initialStateLocal.favorites,
+  addresses: initialStateLocal === null ? [] : initialStateLocal.addresses,
 };
 
 export const addressSlice = createSlice({
   name: "address",
   initialState,
-  reducers: {},
+  reducers: {
+    addToAddress: (state, action: PayloadAction<AddressValue>) => {
+      const isExisted = state.addresses.some(
+        //checks for is existed in list
+        (item) => item.name === action.payload.name
+      );
+
+      if (!isExisted) {
+        // if not adds
+        state.addresses.push(action.payload);
+      }
+      localStorage.setItem("addressState", JSON.stringify(state)); // keep updated local storage
+    },
+  },
 });
 
-//export const { } = addressSlice.actions;
+export const { addToAddress } = addressSlice.actions;
 
 export default addressSlice.reducer;
