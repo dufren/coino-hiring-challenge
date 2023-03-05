@@ -1,5 +1,9 @@
 @import "../variables";
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .header {
   border-bottom: var(--card-border);
   height: 100px;
@@ -49,6 +53,7 @@
           }
           flex-direction: column;
           position: fixed;
+          overflow: hidden;
           justify-content: space-around;
           top: 0px;
           right: 0px;

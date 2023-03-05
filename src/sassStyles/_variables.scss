@@ -16,6 +16,23 @@ $Prompt: "Prompt", sans-serif;
   }
 }
 
+@mixin buttonTemplate {
+  font-family: inherit;
+  font-weight: 500;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--primary);
+  color: var(--btn-text-color);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  margin-bottom: 16px;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 // breakpoints
 $xsBreakpoint: 576px;
 $smBreakpoint: 768px;

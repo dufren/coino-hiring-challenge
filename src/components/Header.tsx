@@ -19,6 +19,14 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
     setIsMenuOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+  }, [isMenuOpen]);
+
   return (
     <header className={classes.header}>
       <div className={classes.header__content}>

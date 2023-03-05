@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addToFav } from "../favorites/favoritesSlice";
 import { updateCart } from "../cart/cartSlice";
 import { useLocation } from "react-router-dom";
+import Modal from "../../components/Modal";
 
 type Props = {
   product: ProductType;
@@ -74,20 +75,6 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
     }
   };
 
-  const modalRemoveAndFavHandle = () => {
-    // works when the modal is open
-    dispatch(addToFav(product));
-    dispatch(updateCart({ product, amount: -amount }));
-    toastNotify(`${product.title} removed and favorited`);
-    setModalOpen(false);
-  };
-
-  const modalRemoveFromCartHandle = () => {
-    // works when the modal is open
-    dispatch(updateCart({ product: product, amount: -amount })); //-amount equals the amount at the store. so basically  removes it.
-    toastNotify(`${product.title} removed from cart!`);
-  };
-
   return (
     <div className={classes.card}>
       <div className={classes.card__upper}>
@@ -151,28 +138,13 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
 
       {/* modal, only displays when url changes to /cart and modalOpen should be true */}
       {modalOpen && location.pathname === "/cart" && (
-        <div className={`${classes.modal} ${modalOpen ? classes.open : ""}`}>
-          <div className={classes.modal__content}>
-            <h2>Are you sure you want to remove the product from the cart?</h2>
-            <p>{product.title}</p>
-            <div className={classes.modal__content__buttons}>
-              <button
-                onClick={modalRemoveFromCartHandle}
-                className={classes.modal__content__buttons__btn}
-              >
-                Remove from cart
-              </button>
-              {!inFav && (
-                <button
-                  onClick={modalRemoveAndFavHandle}
-                  className={classes.modal__content__buttons__btn}
-                >
-                  Remove and add to favorites
-                </button>
-              )}
-            </div>
-          </div>
-        </div>
+        <Modal
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          product={product}
+          inFav={inFav}
+          amount={amount}
+        />
       )}
     </div>
   );

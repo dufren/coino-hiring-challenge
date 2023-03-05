@@ -1,0 +1,51 @@
+@import "../variables";
+
+.modal {
+  &.open {
+    display: flex;
+  }
+  font-family: inherit;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+
+  &__content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 24px;
+    text-align: center;
+    width: 600px;
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: var(--btn-text-color);
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--btn-text-color);
+    }
+
+    &__buttons {
+      display: flex;
+      justify-content: space-around;
+
+      @include md2-breakpoint() {
+        flex-direction: column;
+      }
+
+      &__btn {
+        @include buttonTemplate;
+      }
+    }
+  }
+}
