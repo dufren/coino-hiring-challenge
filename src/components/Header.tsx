@@ -74,7 +74,9 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
             </li>
             <li>
               <div>
-                <Link to={"/cart"}>Cart({amount})</Link>
+                <Link to={"/cart"}>
+                  Cart <span>({amount > 0 ? amount : "empty"})</span>
+                </Link>
               </div>
             </li>
             <li>
