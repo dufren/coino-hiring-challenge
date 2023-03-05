@@ -7,6 +7,7 @@ import CartList from "./features/cart/CartList";
 
 function App() {
   return (
+    // nested rootes
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<ProductsList />} />

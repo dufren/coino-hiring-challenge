@@ -8,6 +8,7 @@ const Layout = () => {
   const [theme, setTheme] = useState("dark");
 
   return (
+    // layout exists to be able to set up nested structre
     <div className={classes.container} data-theme={theme}>
       <Header theme={theme} setTheme={setTheme} />
       <div className={classes.container__content}>

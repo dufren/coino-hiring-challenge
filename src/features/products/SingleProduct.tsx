@@ -12,8 +12,8 @@ import { useLocation } from "react-router-dom";
 
 type Props = {
   product: ProductType;
-  inFav: boolean;
-  inCart: boolean;
+  inFav: boolean; // rendering purposes
+  inCart: boolean; // rendering purposes
 };
 
 const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
@@ -26,12 +26,13 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
   const amount = cart.find((p) => p.product.id === product.id)?.amount ?? 0;
 
   const toastNotify = (message: string) => {
+    // notification purposes
     toast.info(`${message}`, {
-      position: "bottom-right",
-      autoClose: 5000,
+      position: "bottom-left",
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
-      pauseOnHover: true,
+      pauseOnHover: false,
       draggable: true,
       progress: undefined,
       theme: "light",
@@ -39,6 +40,7 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
   };
 
   const addToFavHandle = () => {
+    // handles add function for favorites.
     dispatch(addToFav(product));
 
     if (!inFav) {
@@ -49,27 +51,31 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
   };
 
   const addToCartHandle = () => {
-    dispatch(updateCart({ product: product, amount: 1 }));
+    // handles add and increment function.
+    dispatch(updateCart({ product: product, amount: 1 })); // 1 amount for increment operation, if there is no item same with prop, its pushing it.
     toastNotify(`${product.title} added to cart!`);
   };
 
   const decrementCartItemHandle = () => {
+    // handles decrement function.
     if (inCart) {
-      dispatch(updateCart({ product: product, amount: -1 }));
+      dispatch(updateCart({ product: product, amount: -1 })); // -1 amount for decrement operation.
       toastNotify(`${product.title} removed from cart!`);
     }
   };
 
   const removeFromCartHandle = () => {
+    // handles remove function.
     if (location.pathname === "/cart") {
       setModalOpen(true);
     } else {
-      dispatch(updateCart({ product: product, amount: -amount }));
+      dispatch(updateCart({ product: product, amount: -amount })); //-amount equals the amount at the store. so basically  removes it.
       toastNotify(`${product.title} removed from cart!`);
     }
   };
 
-  const removeAndFavHandle = () => {
+  const modalRemoveAndFavHandle = () => {
+    // works when the modal is open
     dispatch(addToFav(product));
     dispatch(updateCart({ product, amount: -amount }));
     toastNotify(`${product.title} removed and favorited`);
@@ -137,10 +143,11 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
         )}
       </div>
 
+      {/* modal, only displays when url changes to /cart and modalOpen should be true */}
       {modalOpen && location.pathname === "/cart" && (
         <div className={`${classes.modal} ${modalOpen ? classes.open : ""}`}>
           <div className={classes.modal__content}>
-            <h2>Ürünü sepetten kaldırmak istediğinize emin misiniz?</h2>
+            <h2>Are you sure you want to remove the product from the cart?</h2>
             <p>{product.title}</p>
             <div className={classes.modal__content__buttons}>
               <button
@@ -151,7 +158,7 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
               </button>
               {!inFav && (
                 <button
-                  onClick={removeAndFavHandle}
+                  onClick={modalRemoveAndFavHandle}
                   className={classes.modal__content__buttons__btn}
                 >
                   Remove and add to favorites

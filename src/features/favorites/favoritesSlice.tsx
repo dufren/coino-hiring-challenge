@@ -5,7 +5,7 @@ type favList = {
   favorites: ProductType[];
 };
 
-const initialStateLocal =
+const initialStateLocal = // checking localstorage to keep data in cache
   localStorage.getItem("favState") !== null
     ? JSON.parse(localStorage.getItem("favState") || "")
     : null;
@@ -19,19 +19,23 @@ export const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addToFav: (state, action: PayloadAction<ProductType>) => {
+      // toggler add and remove function
       const isExisted = state.favorites.some(
+        //checks for is existed in list
         (item) => item.id === action.payload.id
       );
 
       if (!isExisted) {
+        // if not addes
         state.favorites.push(action.payload);
       } else {
+        // if in list, removes
         state.favorites = state.favorites.filter(
           (item) => item.id !== action.payload.id
         );
       }
 
-      localStorage.setItem("favState", JSON.stringify(state));
+      localStorage.setItem("favState", JSON.stringify(state)); // keep updated local storage
     },
   },
 });

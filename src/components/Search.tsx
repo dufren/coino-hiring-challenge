@@ -16,6 +16,7 @@ const Search: React.FC<Props> = ({ data, setProducts }) => {
     e.preventDefault();
 
   function filterProducts(data: ProductType[]) {
+    //searches the list
     const searchString = searchValue?.current?.value?.toLocaleLowerCase() ?? "";
 
     const filteredProducts = data.filter((product) => {
@@ -25,6 +26,7 @@ const Search: React.FC<Props> = ({ data, setProducts }) => {
   }
 
   function sortProducts(filteredProducts: ProductType[]) {
+    //sortes the list
     const key = sortValue?.current?.value.split("-") ?? "";
     const sortKey = key[0] as keyof ProductType;
     const sortOrder = key[1];
@@ -38,6 +40,7 @@ const Search: React.FC<Props> = ({ data, setProducts }) => {
   }
 
   const filterAndSort = () => {
+    // either filter or sort, they work together to stay updated when the other one works
     const filteredProducts = filterProducts(data);
     sortProducts(filteredProducts);
     setProducts(filteredProducts);

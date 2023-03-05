@@ -12,19 +12,24 @@ import { ToastContainer } from "react-toastify";
 
 const ProductsList = () => {
   const { data, isLoading, isError, isSuccess } =
-    useGetProductsQuery(undefined);
+    useGetProductsQuery(undefined); // rtk query's fetch function. basically data is reponse
 
   const [products, setProducts] = useState<ProductType[]>([]);
 
-  const favList = useAppSelector((store) => store.favorites.favorites);
-  const cartList = useAppSelector((store) => store.cart.cartList);
+  const favList = useAppSelector((store) => store.favorites.favorites); // for checking in fav
+  const cartList = useAppSelector((store) => store.cart.cartList); // for checking in cart
 
   useEffect(() => {
+    // data comes undefined. when fetch is done data changes and useeffect catching it
     data && setProducts(data.products);
   }, [data]);
 
+  let deneme;
+
   if (isLoading) {
-    return (
+    console.log("first");
+    // while data is getting fetch displaying loader
+    deneme = (
       <div className={classes.loader}>
         <PulseLoader size={50} color={"#1ecad3"} />
       </div>
@@ -32,10 +37,13 @@ const ProductsList = () => {
   }
 
   if (isError) {
-    return <p className={classes.loader}>something went wrong...</p>;
+    // when fetch operation gets error displaying error
+    deneme = <p className={classes.loader}>something went wrong...</p>;
   }
 
   if (isSuccess) {
+    // all the action stars here
+    // mapping all the products to single component to handle it easily
     const results = products.map((product) => (
       <SingleProduct
         product={product}
@@ -44,7 +52,7 @@ const ProductsList = () => {
         key={product.id}
       />
     ));
-
+    // if there is nothing to display
     const content = results?.length ? (
       results
     ) : (
@@ -67,6 +75,8 @@ const ProductsList = () => {
       </main>
     );
   }
+
+  return deneme ?? <div></div>;
 };
 
 export default ProductsList;
