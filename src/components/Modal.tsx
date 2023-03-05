@@ -5,6 +5,7 @@ import { addToFav } from "../features/favorites/favoritesSlice";
 import { ProductType } from "../Types";
 import { toast } from "react-toastify";
 import classes from "../sassStyles/componentStyles/Modal.module.scss";
+import { AiOutlineClose } from "react-icons/ai";
 
 type Props = {
   modalOpen: boolean;
@@ -72,6 +73,9 @@ const Modal: React.FC<Props> = ({
             </button>
           )}
         </div>
+        <button className={classes.modal__content__close}>
+          <AiOutlineClose onClick={() => setModalOpen(false)} />
+        </button>
       </div>
     </div>
   );
