@@ -28,7 +28,6 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
   const amount = cart.find((p) => p.product.id === product.id)?.amount ?? 0;
 
   useEffect(() => {
-    console.log("modal useffect inside", modalOpen);
     if (modalOpen) {
       document.body.style.overflow = "hidden";
     } else {

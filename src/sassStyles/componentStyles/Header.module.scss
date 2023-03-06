@@ -1,14 +1,5 @@
 @import "../variables";
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .header {
   border-bottom: var(--card-border);
   height: 100px;
@@ -25,8 +16,8 @@
     &__logo {
       cursor: pointer;
       width: 100px;
-      transition: 0.3s ease all;
       a {
+        transition: 0.3s ease all;
         text-decoration: none;
         color: var(--text-color);
         @include hoverPrimary;
@@ -37,10 +28,13 @@
       display: none;
       font-size: 30px;
       cursor: pointer;
+      transition: 0.3s ease all;
+
       @include md2-breakpoint() {
         display: block;
         z-index: 100;
       }
+
       @include hoverPrimary;
     }
 
@@ -58,23 +52,20 @@
         gap: 25px;
 
         @include md2-breakpoint() {
-          &.close {
-            display: none;
-          }
-          animation: fade-in 500ms forwards;
-          flex-direction: column;
-          position: fixed;
-          overflow: hidden;
-          justify-content: space-around;
-          top: 0px;
-          right: 0px;
-          height: 100%;
-          width: 100%;
           background-color: var(--card-bg-color);
           text-align: center;
-          transition: 0.3s ease all;
-          font-size: 30px;
+          flex-direction: column;
+          position: fixed;
+          justify-content: space-around;
+          inset: 0px 0px 0px 100%;
           z-index: 100;
+          visibility: hidden;
+          transition: 0.3s ease all;
+
+          &.open {
+            visibility: visible;
+            inset: 0px 0px 0px 0%;
+          }
         }
 
         li {

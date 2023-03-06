@@ -64,7 +64,7 @@ const Header: React.FC<Props> = ({ theme, setTheme }) => {
         </h1>
 
         <nav className={classes.header__content__nav}>
-          <ul className={`${!isMenuOpen ? classes.close : ""}`}>
+          <ul className={`${isMenuOpen ? classes.open : classes.close}`}>
             <li>
               <Link to={"/"}>Products</Link>
             </li>
