@@ -21,6 +21,16 @@ const AddresList = () => {
 
   const addresses = useAppSelector((store) => store.address.addresses);
 
+  const results = addresses.map((address, idx) => (
+    <SingleAddress address={address} key={idx} />
+  ));
+
+  const content = results?.length ? (
+    results
+  ) : (
+    <p>There is no favorite product</p>
+  );
+
   const onSubmit = (
     values: AddressValue,
     { resetForm }: { resetForm: () => void }
@@ -33,19 +43,13 @@ const AddresList = () => {
     <div>
       <h1 style={{ textAlign: "center" }}>Addresses</h1>
 
-      <main
+      <div
         className={`${classes.address} ${
-          !addresses?.length ? classes.empty : ""
+          !results?.length ? classes.empty : ""
         }`}
       >
-        {addresses.length > 0 ? (
-          addresses.map((address, idx) => (
-            <SingleAddress key={idx} address={address} />
-          ))
-        ) : (
-          <p style={{ textAlign: "center" }}>There is no registered address.</p>
-        )}
-      </main>
+        {content}
+      </div>
 
       <div className={classes.form}>
         <h1 style={{ textAlign: "center" }}>Address Form</h1>
