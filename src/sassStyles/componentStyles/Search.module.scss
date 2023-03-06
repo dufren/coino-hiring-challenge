@@ -29,6 +29,10 @@
     border: var(--card-border);
     border-radius: 5px;
     outline: none;
+
+    @include xs-breakpoint() {
+      width: 80%;
+    }
   }
 
   select {
@@ -40,5 +44,9 @@
     border-radius: 5px;
     outline: none;
     background-color: #fff;
+
+    @include xs-breakpoint() {
+      width: 80%;
+    }
   }
 }
