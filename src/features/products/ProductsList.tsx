@@ -24,11 +24,11 @@ const ProductsList = () => {
     data && setProducts(data.products);
   }, [isSuccess]);
 
-  let deneme;
+  let content;
 
   if (isLoading) {
     // while data is getting fetch displaying loader
-    deneme = (
+    content = (
       <div className={classes.loader}>
         <PulseLoader size={50} color={"#1ecad3"} />
       </div>
@@ -37,7 +37,7 @@ const ProductsList = () => {
 
   if (isError) {
     // when fetch operation gets error displaying error
-    deneme = <p className={classes.loader}>something went wrong...</p>;
+    content = <p className={classes.loader}>something went wrong...</p>;
   }
 
   if (isSuccess) {
@@ -75,7 +75,7 @@ const ProductsList = () => {
     );
   }
 
-  return deneme ?? <div></div>;
+  return content ?? <div></div>;
 };
 
 export default ProductsList;
