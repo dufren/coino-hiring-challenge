@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { DataType } from "../../Types";
+import type { DataType } from "../../utils/Types";
 
 export const apiSlice = createApi({
   reducerPath: "apiSlice",

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { Cart, CardUpdate as CardUpdateAction } from "../../Types";
+import type { Cart, CardUpdate as CardUpdateAction } from "../../utils/Types";
 
 const initialStateLocal = // checking localstorage to keep data in cache
   localStorage.getItem("cartState") !== null

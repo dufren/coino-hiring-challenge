@@ -56,7 +56,6 @@
         display: flex;
         list-style: none;
         gap: 25px;
-        animation: fade-in 500ms forwards;
 
         @include md2-breakpoint() {
           &.close {

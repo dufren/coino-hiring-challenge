@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "../../sassStyles/componentStyles/ProductsList.module.scss";
-import { ProductType } from "../../Types";
+import { ProductType } from "../../utils/Types";
 import { useEffect, useState } from "react";
 import { useGetProductsQuery } from "../../app/api/apiSlice";
 import { PulseLoader } from "react-spinners";

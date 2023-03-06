@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { ProductType } from "../../Types";
+import type { ProductType } from "../../utils/Types";
 
 type favList = {
   favorites: ProductType[];

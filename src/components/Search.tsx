@@ -1,7 +1,7 @@
 import classes from "../sassStyles/componentStyles/Search.module.scss";
 
 import React, { useRef } from "react";
-import { ProductType } from "../Types";
+import { ProductType } from "../utils/Types";
 
 type Props = {
   data: ProductType[];

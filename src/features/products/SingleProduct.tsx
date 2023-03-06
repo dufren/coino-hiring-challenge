@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { AiFillStar } from "react-icons/ai";
 import { MdOutlineFavorite } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
-import { ProductType } from "../../Types";
+import { ProductType } from "../../utils/Types";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addToFav } from "../favorites/favoritesSlice";
 import { updateCart } from "../cart/cartSlice";

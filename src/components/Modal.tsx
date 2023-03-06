@@ -2,7 +2,7 @@ import React from "react";
 import { useAppDispatch } from "../app/hooks";
 import { updateCart } from "../features/cart/cartSlice";
 import { addToFav } from "../features/favorites/favoritesSlice";
-import { ProductType } from "../Types";
+import { ProductType } from "../utils/Types";
 import { toast } from "react-toastify";
 import classes from "../sassStyles/componentStyles/Modal.module.scss";
 import { AiOutlineClose } from "react-icons/ai";
