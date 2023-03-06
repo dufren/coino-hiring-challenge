@@ -75,7 +75,7 @@ const ProductsList = () => {
     );
   }
 
-  return content ?? <div></div>;
+  return content ?? <p>Something went wrong..!</p>;
 };
 
 export default ProductsList;

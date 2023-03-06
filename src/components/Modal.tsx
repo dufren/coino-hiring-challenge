@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAppDispatch } from "../app/hooks";
 import { updateCart } from "../features/cart/cartSlice";
 import { addToFav } from "../features/favorites/favoritesSlice";
