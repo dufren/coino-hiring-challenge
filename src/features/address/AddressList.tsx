@@ -33,7 +33,11 @@ const AddresList = () => {
     <div>
       <h1 style={{ textAlign: "center" }}>Addresses</h1>
 
-      <main className={classes.address}>
+      <main
+        className={`${classes.address} ${
+          !addresses?.length ? classes.empty : ""
+        }`}
+      >
         {addresses.length > 0 ? (
           addresses.map((address, idx) => (
             <SingleAddress key={idx} address={address} />
