@@ -1,11 +1,11 @@
 import React from "react";
 import { Formik, Field, Form } from "formik";
-import * as Yup from "yup";
 import classes from "../../sassStyles/componentStyles/AddressList.module.scss";
 import type { AddressValue } from "../../utils/Types";
 import { addToAddress } from "./addressSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { AddressSchema } from "../../utils/Schema";
+import SingleAddress from "./SingleAddress";
 
 const AddresList = () => {
   const initialValues: AddressValue = {
@@ -39,18 +39,7 @@ const AddresList = () => {
       <main className={classes.address}>
         {addresses.length > 0 &&
           addresses.map((address, idx) => (
-            <div className={classes.singleAddress} key={idx}>
-              <h1>
-                {address.name} {address.surname}
-              </h1>
-              <p>{address.phone}</p>
-              <p>
-                {address.city} {address.district}
-              </p>
-              <p>
-                {address.address} no:{address.doorNumber}
-              </p>
-            </div>
+            <SingleAddress key={idx} address={address} />
           ))}
       </main>
 
