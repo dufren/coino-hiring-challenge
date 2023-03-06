@@ -6,6 +6,9 @@ import type { AddressValue } from "../../Types";
 import { addToAddress } from "./addressSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const AddressSchema = Yup.object().shape({
   //yup for validating inputs
   name: Yup.string()
@@ -19,9 +22,8 @@ const AddressSchema = Yup.object().shape({
     .required("Surname is required"),
 
   phone: Yup.string()
-    .min(5, "Phone is too short!")
-    .max(15, "Phone is too long!")
-    .required("Phone is required"),
+    .matches(phoneRegExp, "Phone number is not valid")
+    .required("Phone number is required"),
 
   city: Yup.string()
     .min(2, "City is too short!")
@@ -35,12 +37,12 @@ const AddressSchema = Yup.object().shape({
 
   address: Yup.string()
     .min(2, "Address is too short!")
-    .max(20, "Address is too long!")
+    .max(50, "Address is too long!")
     .required("Address is required"),
 
   doorNumber: Yup.string()
     .min(1, "door no is too short!")
-    .max(10, "door no is too long!"),
+    .max(4, "door no is too long!"),
 });
 
 const AddresList = () => {
@@ -107,7 +109,7 @@ const AddresList = () => {
                 }`}
               >
                 <label htmlFor="name">Name:</label>
-                <Field name="name" type="text" />
+                <Field name="name" maxLength={25} type="text" />
                 {errors.name && touched.name ? (
                   <div className={classes.form__wrapper__msg}>
                     {errors.name}
@@ -123,7 +125,7 @@ const AddresList = () => {
                 }`}
               >
                 <label htmlFor="surname">Surname:</label>
-                <Field name="surname" type="text" />
+                <Field name="surname" maxLength={25} type="text" />
                 {errors.surname && touched.surname ? (
                   <div className={classes.form__wrapper__msg}>
                     {errors.surname}
@@ -139,7 +141,7 @@ const AddresList = () => {
                 }`}
               >
                 <label htmlFor="phone">Phone:</label>
-                <Field name="phone" type="text" />
+                <Field name="phone" maxLength={10} type="text" />
                 {errors.phone && touched.phone ? (
                   <div className={classes.form__wrapper__msg}>
                     {errors.phone}
@@ -155,7 +157,7 @@ const AddresList = () => {
                 }`}
               >
                 <label htmlFor="city">City:</label>
-                <Field name="city" type="text" />
+                <Field name="city" maxLength={10} type="text" />
                 {errors.city && touched.city ? (
                   <div className={classes.form__wrapper__msg}>
                     {errors.city}
@@ -171,7 +173,7 @@ const AddresList = () => {
                 }`}
               >
                 <label htmlFor="district">District:</label>
-                <Field name="district" type="text" />
+                <Field name="district" maxLength={10} type="text" />
                 {errors.district && touched.district ? (
                   <div className={classes.form__wrapper__msg}>
                     {errors.district}
@@ -187,7 +189,7 @@ const AddresList = () => {
                 }`}
               >
                 <label htmlFor="address">Address:</label>
-                <Field name="address" type="text" />
+                <Field name="address" maxLength={50} type="text" />
                 {errors.address && touched.address ? (
                   <div className={classes.form__wrapper__msg}>
                     {errors.address}
@@ -197,7 +199,7 @@ const AddresList = () => {
 
               <div>
                 <label htmlFor="doorNumber">No:</label>
-                <Field name="doorNumber" type="text" />
+                <Field name="doorNumber" maxLength={5} type="text" />
                 {errors.doorNumber && touched.doorNumber ? (
                   <div className={classes.form__wrapper__msg}>
                     {errors.doorNumber}
