@@ -32,15 +32,15 @@ const AddresList = () => {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Addresses</h1>
-      {addresses.length <= 0 && (
-        <p style={{ textAlign: "center" }}>There is no registered address.</p>
-      )}
-      {/* This time I wanted to mapping it inside. I don't think there will be thousands of addresses. */}
+
       <main className={classes.address}>
-        {addresses.length > 0 &&
+        {addresses.length > 0 ? (
           addresses.map((address, idx) => (
             <SingleAddress key={idx} address={address} />
-          ))}
+          ))
+        ) : (
+          <p style={{ textAlign: "center" }}>There is no registered address.</p>
+        )}
       </main>
 
       <div className={classes.form}>
