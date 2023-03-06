@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "../../sassStyles/componentStyles/Product.module.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
@@ -26,6 +26,15 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
 
   const cart = useAppSelector((store) => store.cart.cartList);
   const amount = cart.find((p) => p.product.id === product.id)?.amount ?? 0;
+
+  useEffect(() => {
+    console.log("modal useffect inside", modalOpen);
+    if (modalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [modalOpen]);
 
   const toastNotify = (message: string) => {
     // notification purposes

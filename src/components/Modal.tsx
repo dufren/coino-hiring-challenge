@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch } from "../app/hooks";
 import { updateCart } from "../features/cart/cartSlice";
 import { addToFav } from "../features/favorites/favoritesSlice";
@@ -74,7 +74,7 @@ const Modal: React.FC<Props> = ({
           )}
         </div>
         <button className={classes.modal__content__close}>
-          <AiOutlineClose onClick={() => setModalOpen(false)} />
+          <AiOutlineClose onClick={() => setModalOpen(!modalOpen)} />
         </button>
       </div>
     </div>
