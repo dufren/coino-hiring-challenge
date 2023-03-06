@@ -1,5 +1,14 @@
 @import "../variables";
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .header {
   border-bottom: var(--card-border);
   height: 100px;
@@ -47,11 +56,13 @@
         display: flex;
         list-style: none;
         gap: 25px;
+        animation: fade-in 500ms forwards;
 
         @include md2-breakpoint() {
           &.close {
             display: none;
           }
+          animation: fade-in 500ms forwards;
           flex-direction: column;
           position: fixed;
           overflow: hidden;
