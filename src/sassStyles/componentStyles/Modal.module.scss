@@ -1,12 +1,21 @@
 @import "../variables";
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .modal {
   &.open {
-    display: flex;
+    visibility: visible;
   }
-  font-family: inherit;
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
+  font-family: inherit;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -14,7 +23,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 100;
+  visibility: hidden;
+  animation: fade-in 500ms forwards;
 
   &__content {
     background-color: #fff;
