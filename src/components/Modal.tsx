@@ -6,6 +6,7 @@ import { ProductType } from "../utils/Types";
 import { toast } from "react-toastify";
 import classes from "../sassStyles/componentStyles/Modal.module.scss";
 import { AiOutlineClose } from "react-icons/ai";
+import { toastNotify } from "./ToastNotify";
 
 type Props = {
   modalOpen: boolean;
@@ -23,20 +24,6 @@ const Modal: React.FC<Props> = ({
   amount,
 }) => {
   const dispatch = useAppDispatch();
-
-  const toastNotify = (message: string) => {
-    // notification purposes
-    toast.info(`${message}`, {
-      position: "bottom-left",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
 
   const modalRemoveAndFavHandle = () => {
     // works when the modal is open

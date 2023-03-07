@@ -11,6 +11,7 @@ import { addToFav } from "../favorites/favoritesSlice";
 import { updateCart } from "../cart/cartSlice";
 import { useLocation } from "react-router-dom";
 import Modal from "../../components/Modal";
+import { toastNotify } from "../../components/ToastNotify";
 
 type Props = {
   product: ProductType;
@@ -34,20 +35,6 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
       document.body.style.overflow = "";
     }
   }, [modalOpen]);
-
-  const toastNotify = (message: string) => {
-    // notification purposes
-    toast.info(`${message}`, {
-      position: "bottom-left",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  };
 
   const addToFavHandle = () => {
     // handles add function for favorites.
