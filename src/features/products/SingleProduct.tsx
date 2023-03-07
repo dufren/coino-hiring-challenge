@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "../../sassStyles/componentStyles/Product.module.scss";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 import { AiFillStar } from "react-icons/ai";
 import { MdOutlineFavorite } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
