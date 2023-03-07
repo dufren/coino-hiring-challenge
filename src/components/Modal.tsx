@@ -3,14 +3,13 @@ import { useAppDispatch } from "../app/hooks";
 import { updateCart } from "../features/cart/cartSlice";
 import { addToFav } from "../features/favorites/favoritesSlice";
 import { ProductType } from "../utils/Types";
-import { toast } from "react-toastify";
 import classes from "../sassStyles/componentStyles/Modal.module.scss";
 import { AiOutlineClose } from "react-icons/ai";
 import { toastNotify } from "./ToastNotify";
 
 type Props = {
   modalOpen: boolean;
-  setModalOpen: (arg0: boolean) => void;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   product: ProductType;
   inFav: boolean;
   amount: number;
@@ -37,6 +36,7 @@ const Modal: React.FC<Props> = ({
     // works when the modal is open
     dispatch(updateCart({ product: product, amount: -amount })); //-amount equals the amount at the store. so basically  removes it.
     toastNotify(`${product.title} removed from cart!`);
+    setModalOpen(false);
   };
 
   return (
@@ -61,7 +61,7 @@ const Modal: React.FC<Props> = ({
           )}
         </div>
         <button className={classes.modal__content__close}>
-          <AiOutlineClose onClick={() => setModalOpen(!modalOpen)} />
+          <AiOutlineClose onClick={() => setModalOpen(false)} />
         </button>
       </div>
     </div>

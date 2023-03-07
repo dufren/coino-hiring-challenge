@@ -27,14 +27,6 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
   const cart = useAppSelector((store) => store.cart.cartList);
   const amount = cart.find((p) => p.product.id === product.id)?.amount ?? 0;
 
-  useEffect(() => {
-    if (modalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, [modalOpen]);
-
   const addToFavHandle = () => {
     // handles add function for favorites.
     dispatch(addToFav(product));
