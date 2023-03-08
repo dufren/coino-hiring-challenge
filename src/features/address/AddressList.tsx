@@ -28,7 +28,7 @@ const AddresList = () => {
   const content = results?.length ? (
     results
   ) : (
-    <p>There is no favorite product</p>
+    <p>There is no registered address yet!</p>
   );
 
   const onSubmit = (
