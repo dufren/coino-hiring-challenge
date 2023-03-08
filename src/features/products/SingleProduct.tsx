@@ -56,6 +56,7 @@ const SingleProduct: React.FC<Props> = ({ product, inFav, inCart }) => {
     // handles remove function.
     if (location.pathname === "/cart") {
       setModalOpen(true);
+      document.body.style.overflow = "hidden";
     } else {
       dispatch(updateCart({ product: product, amount: -amount })); //-amount equals the amount at the store. so basically  removes it.
       toastNotify(`${product.title} removed from cart!`);

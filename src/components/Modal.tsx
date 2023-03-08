@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch } from "../app/hooks";
 import { updateCart } from "../features/cart/cartSlice";
 import { addToFav } from "../features/favorites/favoritesSlice";
@@ -26,16 +26,21 @@ const Modal: React.FC<Props> = ({
 
   const modalRemoveAndFavHandle = () => {
     // works when the modal is open
+    document.body.style.overflow = "";
     dispatch(addToFav(product));
     dispatch(updateCart({ product, amount: -amount }));
     toastNotify(`${product.title} removed and favorited`);
-    setModalOpen(false);
   };
 
   const modalRemoveFromCartHandle = () => {
     // works when the modal is open
+    document.body.style.overflow = "";
     dispatch(updateCart({ product: product, amount: -amount })); //-amount equals the amount at the store. so basically  removes it.
     toastNotify(`${product.title} removed from cart!`);
+  };
+
+  const modalCloseHandle = () => {
+    document.body.style.overflow = "";
     setModalOpen(false);
   };
 
@@ -61,7 +66,7 @@ const Modal: React.FC<Props> = ({
           )}
         </div>
         <button className={classes.modal__content__close}>
-          <AiOutlineClose onClick={() => setModalOpen(false)} />
+          <AiOutlineClose onClick={modalCloseHandle} />
         </button>
       </div>
     </div>
