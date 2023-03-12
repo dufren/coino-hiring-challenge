@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import classes from "../../sassStyles/componentStyles/FavoritesList.module.scss";
 import SingleProduct from "../products/SingleProduct";
 import { useAppSelector } from "../../app/hooks";
 import { ToastContainer } from "react-toastify";
+import autoAnimate from "@formkit/auto-animate";
 
 const FavoritesList = () => {
   const favList = useAppSelector((store) => store.favorites.favorites);
   const cartList = useAppSelector((store) => store.cart.cartList);
+  const parent = useRef(null);
+
+  useEffect(() => {
+    parent.current && autoAnimate(parent.current);
+  }, [parent]);
 
   const results = favList.map((favItem) => (
     <SingleProduct
@@ -27,6 +33,7 @@ const FavoritesList = () => {
     <main className={classes.main}>
       <h1>Favorites</h1>
       <div
+        ref={parent}
         className={`${classes.main__content} ${
           !results?.length ? classes.empty : ""
         }`}
