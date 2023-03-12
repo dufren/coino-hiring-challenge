@@ -1,18 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import classes from "../../sassStyles/componentStyles/FavoritesList.module.scss";
 import SingleProduct from "../products/SingleProduct";
 import { useAppSelector } from "../../app/hooks";
 import { ToastContainer } from "react-toastify";
-import autoAnimate from "@formkit/auto-animate";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const FavoritesList = () => {
   const favList = useAppSelector((store) => store.favorites.favorites);
   const cartList = useAppSelector((store) => store.cart.cartList);
-  const parent = useRef(null);
 
-  useEffect(() => {
-    parent.current && autoAnimate(parent.current);
-  }, [parent]);
+  const [parent] = useAutoAnimate();
 
   const results = favList.map((favItem) => (
     <SingleProduct

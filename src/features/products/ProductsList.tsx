@@ -1,12 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import classes from "../../sassStyles/componentStyles/ProductsList.module.scss";
 import { ProductType } from "../../utils/Types";
-import { useEffect, useState } from "react";
 import { useGetProductsQuery } from "../../app/api/apiSlice";
 import { PulseLoader } from "react-spinners";
 import SingleProduct from "./SingleProduct";
 import Search from "../../components/Search";
-
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useAppSelector } from "../../app/hooks";
 import { ToastContainer } from "react-toastify";
 
@@ -18,6 +17,8 @@ const ProductsList = () => {
 
   const favList = useAppSelector((store) => store.favorites.favorites); // for checking in fav
   const cartList = useAppSelector((store) => store.cart.cartList); // for checking in cart
+
+  const [parent] = useAutoAnimate();
 
   useEffect(() => {
     // data comes undefined. when fetch is done data changes and useeffect catching it
@@ -64,6 +65,7 @@ const ProductsList = () => {
           <Search data={data.products} setProducts={setProducts} />
         </nav>
         <div
+          ref={parent}
           className={`${classes.main__content} ${
             !results?.length ? classes.empty : ""
           }`}
