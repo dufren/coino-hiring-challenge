@@ -7,9 +7,9 @@ const initialStateLocal = // checking localstorage to keep data in cache
     : null;
 
 const initialState: Cart = {
-  cartList: initialStateLocal === null ? [] : initialStateLocal.cartList,
-  totalPrice: initialStateLocal === null ? 0 : initialStateLocal.totalPrice,
-  totalAmount: initialStateLocal === null ? 0 : initialStateLocal.totalAmount,
+  cartList: initialStateLocal ? [] : initialStateLocal.cartList,
+  totalPrice: initialStateLocal ? 0 : initialStateLocal.totalPrice,
+  totalAmount: initialStateLocal ? 0 : initialStateLocal.totalAmount,
 };
 
 export const cartSlice = createSlice({

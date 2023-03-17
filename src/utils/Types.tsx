@@ -11,7 +11,7 @@ export type ProductType = {
   description: string;
   discountPercentage: number;
   id: number;
-  images: [image1: string, image2: string, image3: string, image4: string];
+  images: string[];
   price: number;
   rating: number;
   stock: number;

@@ -11,7 +11,7 @@ const initialStateLocal = // checking localstorage to keep data in cache
     : null;
 
 const initialState: favList = {
-  favorites: initialStateLocal === null ? [] : initialStateLocal.favorites,
+  favorites: initialStateLocal ? [] : initialStateLocal.favorites,
 };
 
 export const favoritesSlice = createSlice({
