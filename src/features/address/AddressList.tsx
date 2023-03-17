@@ -6,6 +6,7 @@ import { addToAddress } from "./addressSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { AddressSchema } from "../../utils/Schema";
 import SingleAddress from "./SingleAddress";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const AddresList = () => {
   const initialValues: AddressValue = {
@@ -20,6 +21,7 @@ const AddresList = () => {
   const dispatch = useAppDispatch();
 
   const addresses = useAppSelector((store) => store.address.addresses);
+  const [parent] = useAutoAnimate();
 
   const results = addresses.map((address, idx) => (
     <SingleAddress address={address} key={idx} />
@@ -44,6 +46,7 @@ const AddresList = () => {
       <h1 style={{ textAlign: "center" }}>Addresses</h1>
 
       <div
+        ref={parent}
         className={`${classes.address} ${
           !results?.length ? classes.empty : ""
         }`}
