@@ -10,7 +10,7 @@ const initialStateLocal = // checking localstorage to keep data in cache
     : null;
 
 const initialState: addressList = {
-  addresses: initialStateLocal ? [] : initialStateLocal.addresses,
+  addresses: initialStateLocal === null ? [] : initialStateLocal.addresses,
 };
 
 export const addressSlice = createSlice({
